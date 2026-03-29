@@ -84,7 +84,7 @@ jobs:
       id: pwd
 
     - name: Check Build Tree
-      uses: step-security/action-cond@v1
+      uses: tzkhan/action-cond@v1
       id: buildtree
       with:
         cond: ${{ github.event.inputs.MANIFEST_BRANCH == 'twrp-11' || github.event.inputs.MANIFEST_BRANCH == 'twrp-12.1' }}
