@@ -84,12 +84,13 @@ jobs:
       id: pwd
 
     - name: Check Build Tree
-      uses: tzkhan/action-cond@v1
       id: buildtree
-      with:
-        cond: ${{ github.event.inputs.MANIFEST_BRANCH == 'twrp-11' || github.event.inputs.MANIFEST_BRANCH == 'twrp-12.1' }}
-        if_true: twrp
-        if_false: omni
+      run: |
+        if [[ "${{ github.event.inputs.MANIFEST_BRANCH == 'twrp-11' || github.event.inputs.MANIFEST_BRANCH == 'twrp-12.1' }}" == "true" ]]; then
+          echo "value=twrp" >> "$GITHUB_OUTPUT"
+        else
+          echo "value=omni" >> "$GITHUB_OUTPUT"
+        fi
 
 
     - name: Repo Sync
